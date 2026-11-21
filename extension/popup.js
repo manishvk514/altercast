@@ -1,6 +1,7 @@
 const COLORS = ["#8B7BFF", "#22D3EE", "#F5A524", "#34D399", "#FF6A3D", "#F472B6", "#E8E36B", "#60A5FA"];
 const $ = (id) => document.getElementById(id);
-let settings = { engine: "https://manishvk18-live-character-voice.hf.space", code: "", mode: "synced", delay: 6, speakers: 2, cast: {} };
+const HOSTED = "https://manishvk18-live-character-voice.hf.space";
+let settings = { engine: HOSTED, code: "", mode: "synced", delay: 6, speakers: 2, cast: {} };
 const hdr = () => (settings.code ? { "X-Access-Code": settings.code } : {});
 let voices = [];
 
@@ -39,16 +40,34 @@ async function checkEngine() {
     if (vr.status === 401) throw new Error("code");
     voices = await vr.json();
     $("start").disabled = !ok;
+    $("fix").style.display = "none";
+    renderCast();
   } catch (e) {
     $("dot").className = "dot";
+    $("start").disabled = true;
+    const local = /localhost|127\.0\.0\.1/.test(settings.engine);
     if (String(e?.message) === "code") {
-      $("engineState").textContent = "Engine needs its access code (open Engine below)";
-      $("start").disabled = true;
+      $("engineState").textContent = settings.code
+        ? "Wrong access code — check it under Engine below"
+        : "Enter the access code under Engine below";
+      document.querySelector("details").open = true;
+      $("fix").style.display = "none";
       return;
     }
-    $("engineState").textContent = "Engine not running — start it with: make serve";
-    $("start").disabled = true;
+    $("engineState").textContent = local
+      ? "No engine on this computer — use the hosted engine instead"
+      : "Engine not reachable — it may be starting (≈1 min) or asleep";
+    $("fix").style.display = local ? "block" : "none";
   }
+}
+
+function useHosted() {
+  settings.engine = HOSTED;
+  $("engine").value = HOSTED;
+  $("lab").href = `${HOSTED}/voices`;
+  save();
+  document.querySelector("details").open = true;
+  void checkEngine();
 }
 
 function renderCast() {
@@ -117,6 +136,7 @@ $("speakers").onchange = (e) => { settings.speakers = Number(e.target.value); sa
 $("engine").onchange = async (e) => { settings.engine = e.target.value.replace(/\/$/, ""); save(); await checkEngine(); renderCast(); };
 $("code").onchange = async (e) => { settings.code = e.target.value.trim(); save(); await checkEngine(); renderCast(); };
 $("start").onclick = start;
+$("fix").onclick = useHosted;
 $("panel").onclick = openPanel;
 $("stop").onclick = async () => { await chrome.runtime.sendMessage({ type: "stop" }); document.body.classList.remove("running"); };
 load();

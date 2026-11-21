@@ -723,3 +723,8 @@ hosted engine as default.
   (Dockerfile clones altercast/main at the repo root, installer, privacy page, extension homepage,
   report). Extension v0.7.1 (homepage link). Removed 8 stray built files committed by the earlier
   site-builder bug.
+
+## 2026-11-21 — extension v0.7.2: clear engine messages
+- Popup: "No engine on this computer — use the hosted engine instead" + one-click "Use the hosted
+  engine" when pointed at localhost; asks for / flags a wrong access code; re-reads voices after a
+  fix. Checked in Chromium with the extension loaded.

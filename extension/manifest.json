@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Altercast — Live Character Voice",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Re-voice live stream commentary in any Chrome tab with character voices, in sync, with live transcript and speaker labels.",
   "minimum_chrome_version": "116",
   "action": {
