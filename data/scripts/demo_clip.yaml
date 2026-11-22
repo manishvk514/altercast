@@ -1,0 +1,17 @@
+# Altercast demo clip (40 s): two commentators, build-up, chance, goal, reaction.
+# Invented teams and players (config/glossary.txt). speaker: A play-by-play | B analyst.
+title: Altercast demo — Riverside Rovers v Northgate United (synthetic)
+lead_in_ms: 1200
+tail_ms: 2500
+lines:
+  - {speaker: A, emotion: neutral, gap_after_ms: 500, text: "Riverside Rovers on the ball now, Okafor brings it forward."}
+  - {speaker: B, emotion: calm, gap_after_ms: 600, text: "They've been patient all evening, waiting for a gap to open up."}
+  - {speaker: A, emotion: neutral, gap_after_ms: 400, text: "Lindqvist out wide, he looks up, Tanaka is making the run."}
+  - {speaker: A, emotion: excited, gap_after_ms: 300, text: "Tanaka is through on goal!"}
+  - {speaker: A, emotion: excited, gap_after_ms: 200, text: "He goes round the keeper!"}
+  - {speaker: A, emotion: peak, gap_after_ms: 300, text: "Goal! Tanaka scores for Riverside!"}
+  - {speaker: B, emotion: excited, gap_after_ms: 600, text: "What a finish! Calm as you like, he made that look so easy!"}
+  - {speaker: A, emotion: excited, gap_after_ms: 500, text: "One nil to the Rovers, and the whole stadium is on its feet!"}
+  - {speaker: B, emotion: neutral, gap_after_ms: 500, text: "That run from Lindqvist opened everything up for him."}
+  - {speaker: A, emotion: calm, gap_after_ms: 600, text: "Northgate kick off again, they need a response now."}
+  - {speaker: B, emotion: calm, gap_after_ms: 600, text: "Plenty of time left, but they'll have to take more risks."}

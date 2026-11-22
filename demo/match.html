@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>*{margin:0;box-sizing:border-box}html,body{width:1280px;height:720px;overflow:hidden;background:#0a2a1f}
+#hud{position:absolute;left:28px;top:24px;display:flex;font-family:'JetBrains Mono',monospace;font-size:24px;border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+#hud span{padding:9px 14px}.t{background:#0b0f1a;color:#fff}.c{background:#22D3EE;color:#062026;font-weight:700}
+#goal{position:absolute;left:0;right:0;top:250px;text-align:center;font:700 150px Sora,sans-serif;color:#fff;letter-spacing:-2px;text-shadow:0 10px 40px rgba(124,92,255,.8);opacity:0}
+#rep{position:absolute;right:28px;top:26px;font:600 16px 'JetBrains Mono',monospace;color:#fff;background:rgba(0,0,0,.45);padding:6px 12px;border-radius:8px;letter-spacing:.1em}
+</style></head><body>
+<svg id="s" width="1280" height="720" viewBox="0 0 1280 720"></svg>
+<div id="hud"><span class="c" id="clk">67'</span><span class="t">RIV <b id="h">0</b> – <b>0</b> NOR</span></div>
+<div id="goal">GOAL!</div><div id="rep">DEMO MATCH · ANIMATED</div>
+<script>
+const W=1600,H=900; // pitch world units
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), ease=x=>{x=cl(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const lerp=(a,b,k)=>a+(b-a)*k, P=(a,b,k)=>[lerp(a[0],b[0],k),lerp(a[1],b[1],k)];
+// keyframe path helper: [[t,[x,y]],...]
+function path(keys,t){if(t<=keys[0][0])return keys[0][1];for(let i=1;i<keys.length;i++){const[a,pa]=keys[i-1],[b,pb]=keys[i];if(t<=b)return P(pa,pb,ease((t-a)/(b-a)))}return keys[keys.length-1][1]}
+const RIV='#8B7BFF',NOR='#22D3EE';
+// players: id, team, base path
+const okafor=[[0,[420,470]],[4.6,[760,440]],[5.4,[770,450]]];
+const lind=[[0,[600,230]],[8,[900,210]],[12.4,[1080,200]],[14,[1120,230]]];
+const tanaka=[[0,[700,560]],[9.5,[860,520]],[12.4,[1060,430]],[14.0,[1330,430]],[15.3,[1460,420]],[15.6,[1490,430]],[20,[1300,300]],[26,[1000,400]]];
+const keeper=[[0,[1540,450]],[13.6,[1520,450]],[14.6,[1440,440]],[15.4,[1450,470]]];
+const ball=[[0,[440,480]],[4.6,[780,450]],[6.2,[700,600]],[7.6,[880,560]],[9.4,[600,240]],[12.4,[1080,210]],[12.9,[1100,410]],[14.0,[1340,440]],[15.2,[1470,415]],[15.6,[1585,445]],[17,[1585,450]],[27.4,[800,450]],[28.8,[680,470]],[31,[560,300]],[34,[700,620]],[37,[820,500]]];
+const others=[[RIV,[300,300]],[RIV,[300,620]],[RIV,[540,700]],[RIV,[200,450]],[NOR,[1000,330]],[NOR,[1020,580]],[NOR,[1200,250]],[NOR,[1220,640]],[NOR,[1280,450]],[NOR,[900,450]]];
+function pitch(){return `<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f4a33"/><stop offset="1" stop-color="#0b3526"/></linearGradient>
+<radialGradient id="v" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>
+<rect x="-400" y="-300" width="${W+800}" height="${H+600}" fill="#0b3526"/><rect width="${W}" height="${H}" fill="url(#g)"/>
+${Array.from({length:16},(_,i)=>`<rect x="${i*100}" y="0" width="50" height="${H}" fill="#fff" opacity=".03"/>`).join('')}
+<g fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="5"><rect x="60" y="60" width="${W-120}" height="${H-120}"/><line x1="${W/2}" y1="60" x2="${W/2}" y2="${H-60}"/><circle cx="${W/2}" cy="${H/2}" r="110"/>
+<rect x="60" y="250" width="230" height="400"/><rect x="${W-290}" y="250" width="230" height="400"/><rect x="60" y="360" width="90" height="180"/><rect x="${W-150}" y="360" width="90" height="180"/></g>
+<rect x="${W-60}" y="400" width="34" height="100" fill="#fff" opacity=".25" stroke="#fff" stroke-width="4"/><rect x="26" y="400" width="34" height="100" fill="#fff" opacity=".25" stroke="#fff" stroke-width="4"/>`}
+function dot(x,y,c,label,r=17){return `<g><ellipse cx="${x}" cy="${y+r+6}" rx="${r}" ry="6" fill="#000" opacity=".3"/><circle cx="${x}" cy="${y}" r="${r}" fill="${c}" stroke="#fff" stroke-width="4"/>${label?`<text x="${x}" y="${y-r-12}" text-anchor="middle" font-family="Sora" font-size="22" fill="#fff" paint-order="stroke" stroke="#000" stroke-opacity=".5" stroke-width="5">${label}</text>`:''}</g>`}
+window.render=(t)=>{
+  const b=path(ball,t);
+  // camera follows the ball (zoomed broadcast view)
+  const z=1.35, cx=cl(b[0],1280/z/2,W-1280/z/2+60), cy=cl(b[1],720/z/2-40,H-720/z/2+40);
+  let g=pitch();
+  others.forEach(([c,[x,y]],i)=>{const k=t*0.7+i;let px=x+Math.sin(k)*30+(t>15.6&&t<26&&c===RIV?(1380-x)*Math.min(1,(t-15.6)/3)*.6:0),py=y+Math.cos(k*.8)*24;g+=dot(px,py,c,'')});
+  const o=path(okafor,t),l=path(lind,t),ta=path(tanaka,t),kp=path(keeper,t);
+  g+=dot(kp[0],kp[1],'#F5A524','');g+=dot(o[0],o[1],RIV,'Okafor');g+=dot(l[0],l[1],RIV,'Lindqvist');g+=dot(ta[0],ta[1],RIV,'Tanaka');
+  g+=`<circle cx="${b[0]}" cy="${b[1]-4}" r="9" fill="#fff" stroke="#111" stroke-width="2"/>`;
+  g+=`<rect width="${W}" height="${H}" fill="url(#v)" opacity=".7"/>`;
+  document.getElementById('s').innerHTML=`<g transform="translate(640 360) scale(${z}) translate(${-cx} ${-cy})">${g}</g>`;
+  const gk=t>=15.6&&t<19.5?Math.sin(cl((t-15.6)/3.9)*Math.PI):0, ge=document.getElementById('goal');ge.style.opacity=gk;ge.style.transform=`scale(${.85+.2*gk})`;
+  document.getElementById('h').textContent=t>=15.6?'1':'0';
+  const m=67*60+12+t, mm=Math.floor(m/60);document.getElementById('clk').textContent=mm+"'";
+};
+window.render(0);
+</script></body></html>
