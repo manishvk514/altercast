@@ -96,6 +96,9 @@ def main() -> int:
     p.add_argument("--start", type=float, default=0.0)
     p.add_argument("--end", type=float, default=0.0)
     p.add_argument("--note", default="")
+    p.add_argument("--speakers", type=int, default=2)
+    p.add_argument("--config", default="", help="engine config, e.g. config/engine.loud.yaml")
+    p.add_argument("--enroll", default="", help="config/enroll.<id>.yaml: a few seconds of each voice")
     p.add_argument("--record", default="", help="reuse an engine run folder instead of running again")
     a = p.parse_args()
 
@@ -117,8 +120,10 @@ def main() -> int:
     else:
         runs = ROOT / "outputs" / "demo_runs"
         before = set(runs.glob("*")) if runs.exists() else set()
-        run([sys.executable, "-m", "engine.cli", "poc", "--clip", str(clip), "--speakers", "2",
-             "--out", str(runs), "--label", a.id, "--no-render"])  # fmt: skip
+        run([sys.executable, "-m", "engine.cli", "poc", "--clip", str(clip), "--speakers", str(a.speakers),
+             "--out", str(runs), "--label", a.id, "--no-render",
+             *(["--enroll", a.enroll] if a.enroll else []),
+             *(["--config", a.config] if a.config else [])])  # fmt: skip
         run_dir = max(set(runs.glob("*")) - before, key=lambda d: d.stat().st_mtime)
     rec = json.loads((run_dir / "record.json").read_text())
     metrics = json.loads((run_dir / "metrics.json").read_text())
@@ -165,6 +170,8 @@ def main() -> int:
         "id": a.id, "title": a.title, "sport": a.sport, "credit": a.credit, "license": a.license,
         "source_url": a.source_url, "note": a.note, "duration": round(duration, 2),
         "speakers": len(spk_num), "lines": items,
+        "speaker_names": {n: (rec.get("speakers", {}).get(s) or {}).get("display_name") or f"Speaker {n}"
+                          for s, n in spk_num.items()},
         "engine": {"run": run_dir.name, "asr": (metrics.get("run") or {}).get("models", {}).get("asr"),
                    "felt_delay_p50": (d.get("delay_felt") or {}).get("p50"),
                    "felt_delay_p95": (d.get("delay_felt") or {}).get("p95"),

@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#070910;--panel:#0F121B;--raised:#161A26;--ink:#F4F6FB;--muted:#8B93A7;--line:rgba(255,255,255,.08);
---violet:#7C5CFF;--aqua:#16C7D9;--ember:#FF6A3D;--mint:#34D399;--s1:#A996FF;--s2:#5FE0EE;
+--violet:#7C5CFF;--aqua:#16C7D9;--ember:#FF6A3D;--mint:#34D399;--s1:#A996FF;--s2:#5FE0EE;--s3:#FFC56B;
 --grad:linear-gradient(135deg,#8A6BFF 0%,#5B4BFF 55%,#16C7D9 100%)}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
@@ -47,7 +47,7 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
 .cap{position:absolute;left:3%;right:3%;bottom:4%;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;transition:opacity .2s}
 .chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
 .chip{border-radius:999px;padding:3px 10px;background:rgba(7,9,16,.85);border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:600}
-.k1{color:var(--s1);border-color:rgba(169,150,255,.55)}.k2{color:var(--s2);border-color:rgba(95,224,238,.55)}
+.k1{color:var(--s1);border-color:rgba(169,150,255,.55)}.k2{color:var(--s2);border-color:rgba(95,224,238,.55)}.k3{color:var(--s3);border-color:rgba(255,197,107,.55)}
 .excited,.peak{color:#FFB199;border-color:rgba(255,106,61,.55)}
 .cap .txt{background:rgba(7,9,16,.85);border-radius:12px;padding:7px 14px;font-size:clamp(13px,1.7vw,17px);font-weight:500;text-align:center;max-width:900px}
 .live{position:absolute;top:10px;left:10px;display:flex;gap:6px}
@@ -91,7 +91,7 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
 .ln.done{opacity:.8}.ln.now{opacity:1;border-color:rgba(22,199,217,.6);box-shadow:0 0 0 1px rgba(22,199,217,.2)}
 .ln .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .who{font-weight:700;font-size:12.5px}
-.who.k1{color:var(--s1)}.who.k2{color:var(--s2)}
+.who.k1{color:var(--s1)}.who.k2{color:var(--s2)}.who.k3{color:var(--s3)}
 .ln .tm{font:500 11px "JetBrains Mono",monospace;color:var(--muted)}
 .ln .t{margin:4px 0 6px;font-size:13.5px}
 .tags{display:flex;gap:5px;flex-wrap:wrap}
@@ -182,7 +182,9 @@ footer{margin-top:20px;color:var(--muted);font-size:13px;display:flex;gap:14px;f
 <script>
 const VOICES=[["am_adam","Hype Host","energetic"],["bm_george","The Veteran","warm, measured"],["am_michael","Coach","steady analyst"],["af_bella","Spark","bright, playful"]];
 const NAME=Object.fromEntries(VOICES.map(v=>[v[0],v[1]]));
-const DEFAULT={1:"am_adam",2:"af_bella"};
+const DEFAULT={1:"am_adam",2:"af_bella",3:"bm_george"};
+const SN=k=>(C.speaker_names&&C.speaker_names[k])||`Speaker ${k}`;
+const SPK=()=>Array.from({length:C.speakers},(_,i)=>i+1);
 const $=id=>document.getElementById(id);
 const v=$("v");
 const fmt=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,"0")}`;
@@ -195,7 +197,7 @@ async function openClip(id){
   stopAll();v.pause();$("big").hidden=false;$("loading").hidden=false;
   document.querySelectorAll(".clipcard").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
   clipBase=`clips/${id}/`;C=await (await fetch(clipBase+"clip.json")).json();
-  sel={...DEFAULT};v.src=clipBase+"video.mp4";$("seek").max=C.duration;
+  const BY={"Play-by-play":"am_adam","Analyst":"am_michael","Referee":"bm_george"};sel={...DEFAULT};for(const [k,n] of Object.entries(C.speaker_names||{}))if(BY[n])sel[k]=BY[n];v.src=clipBase+"video.mp4";$("seek").max=C.duration;
   $("credit").innerHTML=`Clip: <b>${C.title}</b> — ${C.credit}. Licence: ${C.license}. <a href="${C.source_url}" target="_blank" rel="noreferrer">Source</a>. ${C.note||""} Voices replaced by Altercast.`;
   buildVoices();buildList();stats();tick();
   bufs={};const jobs=[loadBuf(clipBase+"original.mp3").then(b=>bufs.original=b),loadBuf(clipBase+"crowd.mp3").then(b=>bufs.crowd=b)];
@@ -237,17 +239,17 @@ function scheduleAll(){
 async function play(){if(!$("loading").hidden)return;await ac().resume();await v.play();scheduleAll();}
 function pause(){v.pause();stopAll();}
 function toggle(){v.paused?play():pause();}
-function setMode(m){mode=m;document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));if(!v.paused)scheduleAll();tick();}
-function setVoice(k,vid){sel[k]=vid;buildVoices();if(!v.paused){if(mode==="over")scheduleAll();else{stopSpeaker(k);scheduleVoices(k);}}tick();}
+function setMode(m){mode=m;document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));if(!v.paused)scheduleAll();lastCur=-2;tick();}
+function setVoice(k,vid){sel[k]=vid;buildVoices();if(!v.paused){if(mode==="over")scheduleAll();else{stopSpeaker(k);scheduleVoices(k);}}lastCur=-2;tick();}
 
 function buildVoices(){
-  $("voices").innerHTML=[1,2].map(k=>`<div class="vbox" id="vb${k}"><div class="lab"><b class="who k${k}">Speaker ${k} speaks as</b><span class="talk">● speaking</span></div><div class="opts">${
+  $("voices").innerHTML=SPK().map(k=>`<div class="vbox" id="vb${k}"><div class="lab"><b class="who k${k}">${SN(k)} speaks as</b><span class="talk">● speaking</span></div><div class="opts">${
     VOICES.map(([id,n,d])=>`<button data-k="${k}" data-v="${id}" aria-pressed="${sel[k]===id}">${n}<small>${d}</small></button>`).join("")}</div></div>`).join("");
   $("voices").querySelectorAll("button").forEach(b=>b.onclick=()=>setVoice(+b.dataset.k,b.dataset.v));
 }
 function buildList(){
   $("list").innerHTML=C.lines.map((l,i)=>`<div class="ln" id="ln${i}" data-t="${l.start}">
-    <div class="top"><span class="who k${l.speaker}">Speaker ${l.speaker}</span><span class="tm">${fmt(l.start)}–${fmt(l.end)}</span></div>
+    <div class="top"><span class="who k${l.speaker}">${SN(l.speaker)}</span><span class="tm">${fmt(l.start)}–${fmt(l.end)}</span></div>
     <div class="t">${l.text}</div>
     <div class="tags"><span class="tag ${l.emotion}">${l.emotion}</span><span class="tag" data-voice="${l.speaker}">voiced as ${NAME[sel[l.speaker]]}</span>${l.stages.text!=null?`<span class="tag">words in ${l.stages.text.toFixed(1)} s</span>`:""}</div></div>`).join("");
   $("list").querySelectorAll(".ln").forEach(el=>el.onclick=()=>{v.currentTime=+el.dataset.t;if(!v.paused)scheduleAll();else play();});
@@ -255,7 +257,7 @@ function buildList(){
 function pipe(l){
   const s=l?l.stages:{};const x=(k)=>s[k]!=null?`+${s[k].toFixed(2)} s`:"";
   const cells=l?[["Heard","line ends "+fmt(l.end),"segmented"],["Words",`“${l.text.split(" ").slice(0,4).join(" ")}…”`,x("text")],
-    ["Who",`Speaker ${l.speaker}`,x("speaker")],["Mood",l.emotion+(l.arousal>0.6?" ↑":""),x("emotion")],
+    ["Who",SN(l.speaker),x("speaker")],["Mood",l.emotion+(l.arousal>0.6?" ↑":""),x("emotion")],
     ["New voice",mode==="orig"?"(original playing)":NAME[sel[l.speaker]],x("voice")]]
     :[["Heard","—",""],["Words","—",""],["Who","—",""],["Mood","—",""],["New voice","—",""]];
   $("pipe").innerHTML=cells.map(([h,b,e])=>`<div class="st ${l?"on":""}"><div class="eyebrow">${h}</div><b>${b}</b><em>${e}</em></div>`).join("");
@@ -268,18 +270,18 @@ function tick(){
     const end=l.start+Math.max(d,0.6);if(t>=l.start&&t<end)cur=i;
     const el=$("ln"+i);el.classList.toggle("now",i===cur);el.classList.toggle("done",t>=end&&i!==cur);
     el.querySelector("[data-voice]").textContent=mode==="orig"?"original voice":"voiced as "+NAME[sel[l.speaker]];});
-  [1,2].forEach(k=>$("vb"+k)?.classList.toggle("speaking",cur>=0&&C.lines[cur].speaker===k&&mode!=="orig"));
+  SPK().forEach(k=>$("vb"+k)?.classList.toggle("speaking",cur>=0&&C.lines[cur].speaker===k&&mode!=="orig"));
   if(cur!==lastCur){lastCur=cur;pipe(cur>=0?C.lines[cur]:null);
     if(cur>=0){const el=$("ln"+cur),L=$("list");if(el.offsetTop<L.scrollTop||el.offsetTop+el.offsetHeight>L.scrollTop+L.clientHeight)L.scrollTo({top:el.offsetTop-8,behavior:"smooth"});}}
   if(cur>=0){const l=C.lines[cur];$("cap").style.opacity=1;
-    $("capWho").className="chip k"+l.speaker;$("capWho").textContent=mode==="orig"?`Speaker ${l.speaker} · original`:`Speaker ${l.speaker} → ${NAME[sel[l.speaker]]}`;
+    $("capWho").className="chip k"+l.speaker;$("capWho").textContent=mode==="orig"?`${SN(l.speaker)} · original`:`${SN(l.speaker)} → ${NAME[sel[l.speaker]]}`;
     $("capMood").className="chip "+l.emotion;$("capMood").textContent=l.emotion;$("capTxt").textContent=l.text;}
   else $("cap").style.opacity=0;
   $("live").innerHTML=`<span class="chip">${mode==="orig"?"ORIGINAL":"ALTERCAST"}</span>`;
 }
 function stats(){
   const n1=C.lines.filter(l=>l.speaker===1).length,n2=C.lines.filter(l=>l.speaker===2).length,E=C.engine||{};
-  const s=[[C.lines.length,"lines heard & re-voiced"],[C.speakers,`commentators found (${n1} + ${n2} lines)`],
+  const s=[[C.lines.length,"lines heard & re-voiced"],[C.speakers,`voices found (${SPK().map(k=>C.lines.filter(l=>l.speaker===k).length).join(" + ")} lines)`],
     [E.felt_delay_p50!=null?E.felt_delay_p50.toFixed(2)+" s":"—","behind live (typical) — so viewers watch a few seconds delayed"],[E.stages_p50&&E.stages_p50.asr!=null?E.stages_p50.asr.toFixed(2)+" s":"—","to turn speech into words"]];
   $("stats").innerHTML=s.map(([b,l])=>`<div class="stat"><b>${b}</b><span>${l}</span></div>`).join("");
   $("statnote").textContent=`One run of the engine on this clip at live speed (run ${E.run||"?"}; speech-to-text: ${E.asr||"?"}). Real broadcast audio has no script to score against, so word and speaker accuracy are shown line by line instead.`;
@@ -289,7 +291,7 @@ v.addEventListener("pause",()=>{$("pi").innerHTML='<path d="M8 5v14l11-7z"/>';st
 v.addEventListener("ended",()=>{stopAll();$("big").hidden=false;});
 v.addEventListener("timeupdate",tick);
 $("seek").oninput=e=>{v.currentTime=+e.target.value;tick();};
-v.addEventListener("seeked",()=>{if(!v.paused)scheduleAll();tick();});
+v.addEventListener("seeked",()=>{if(!v.paused)scheduleAll();lastCur=-2;tick();});
 $("big").onclick=play;$("play").onclick=toggle;
 document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
 document.addEventListener("keydown",e=>{if(e.code==="Space"&&!["BUTTON","INPUT"].includes(e.target.tagName)){e.preventDefault();toggle();}});

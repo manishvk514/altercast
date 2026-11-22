@@ -1,0 +1,556 @@
+{
+ "id": "fox-cfb",
+ "title": "Wazzu trick play & goal-line run",
+ "sport": "American football \u00b7 FOX broadcast",
+ "credit": "FOX Sports (Oregon vs. Washington St highlights), via Wikimedia Commons",
+ "license": "CC BY 3.0",
+ "source_url": "https://commons.wikimedia.org/wiki/File:Oregon_vs._Washington_St_-_FOX_COLLEGE_FOOTBALL_HIGHLIGHTS.webm",
+ "note": "",
+ "duration": 70.02,
+ "speakers": 3,
+ "lines": [
+  {
+   "id": "L000001",
+   "start": 0.42,
+   "end": 6.37,
+   "speaker": 1,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0,
+   "text": "There he is. If you're around September 1 against Wyoming, they ran it twice. It's the old swinging gate.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.14,
+    "text": 1.28,
+    "speaker": 1.58,
+    "emotion": 1.58,
+    "voice": 2.29
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000001_am_adam.mp3",
+     "dur": 6.44,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000001_bm_george.mp3",
+     "dur": 6.76,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000001_am_michael.mp3",
+     "dur": 7.11,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000001_af_bella.mp3",
+     "dur": 5.94,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000002",
+   "start": 11.2,
+   "end": 15.74,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0,
+   "text": "The first and only sideline warning of the game. Mario better be careful too.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.46,
+    "text": 0.33,
+    "speaker": 0.73,
+    "emotion": 0.73,
+    "voice": 1.53
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000002_am_adam.mp3",
+     "dur": 4.36,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000002_bm_george.mp3",
+     "dur": 4.54,
+     "tempo": 1.21
+    },
+    "am_michael": {
+     "file": "lines/L000002_am_michael.mp3",
+     "dur": 4.55,
+     "tempo": 1.16
+    },
+    "af_bella": {
+     "file": "lines/L000002_af_bella.mp3",
+     "dur": 4.54,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000003",
+   "start": 15.74,
+   "end": 17.06,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0,
+   "text": "He is hot.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.45,
+    "text": 0.06,
+    "speaker": 0.18,
+    "emotion": 0.18,
+    "voice": 1.23
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000003_am_adam.mp3",
+     "dur": 0.7,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000003_bm_george.mp3",
+     "dur": 0.79,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000003_am_michael.mp3",
+     "dur": 0.73,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000003_af_bella.mp3",
+     "dur": 0.74,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000004",
+   "start": 18.02,
+   "end": 20.99,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.15,
+   "text": "You're right. They did run it effectively earlier in the year.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.51,
+    "text": 0.08,
+    "speaker": 0.35,
+    "emotion": 0.35,
+    "voice": 1.12
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000004_am_adam.mp3",
+     "dur": 3.07,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000004_bm_george.mp3",
+     "dur": 3.4,
+     "tempo": 1.08
+    },
+    "am_michael": {
+     "file": "lines/L000004_am_michael.mp3",
+     "dur": 3.21,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000004_af_bella.mp3",
+     "dur": 2.92,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000005",
+   "start": 21.5,
+   "end": 27.3,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.09,
+   "text": "And as Steve Spurrier, the receiver's coach, his son is the receiver's coach would say, little old Emory and Henry lift",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.46,
+    "text": 0.69,
+    "speaker": 0.71,
+    "emotion": 0.71,
+    "voice": 1.58
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000005_am_adam.mp3",
+     "dur": 5.8,
+     "tempo": 1.17
+    },
+    "bm_george": {
+     "file": "lines/L000005_bm_george.mp3",
+     "dur": 5.79,
+     "tempo": 1.24
+    },
+    "am_michael": {
+     "file": "lines/L000005_am_michael.mp3",
+     "dur": 5.78,
+     "tempo": 1.26
+    },
+    "af_bella": {
+     "file": "lines/L000005_af_bella.mp3",
+     "dur": 5.8,
+     "tempo": 1.23
+    }
+   }
+  },
+  {
+   "id": "L000006",
+   "start": 27.3,
+   "end": 32.32,
+   "speaker": 1,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.39,
+   "text": "Up there, Timmy B. And, well, the good thing about it is why it was so successful.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 1.19,
+    "text": 0.49,
+    "speaker": 0.68,
+    "emotion": 0.68,
+    "voice": 1.37
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000006_am_adam.mp3",
+     "dur": 5.02,
+     "tempo": 1.04
+    },
+    "bm_george": {
+     "file": "lines/L000006_bm_george.mp3",
+     "dur": 5.02,
+     "tempo": 1.13
+    },
+    "am_michael": {
+     "file": "lines/L000006_am_michael.mp3",
+     "dur": 5.03,
+     "tempo": 1.22
+    },
+    "af_bella": {
+     "file": "lines/L000006_af_bella.mp3",
+     "dur": 5.03,
+     "tempo": 1.16
+    }
+   }
+  },
+  {
+   "id": "L000007",
+   "start": 32.32,
+   "end": 36.38,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "calm",
+   "arousal": -0.52,
+   "text": "It's a touchdown. Whoo. Screen display is now under replay review.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 1.04,
+    "text": 0.12,
+    "speaker": 0.49,
+    "emotion": 0.49,
+    "voice": 1.35
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000007_am_adam.mp3",
+     "dur": 4.07,
+     "tempo": 1.11
+    },
+    "bm_george": {
+     "file": "lines/L000007_bm_george.mp3",
+     "dur": 4.06,
+     "tempo": 1.33
+    },
+    "am_michael": {
+     "file": "lines/L000007_am_michael.mp3",
+     "dur": 4.07,
+     "tempo": 1.31
+    },
+    "af_bella": {
+     "file": "lines/L000007_af_bella.mp3",
+     "dur": 3.99,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000008",
+   "start": 36.38,
+   "end": 41.63,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.06,
+   "text": "Coming here in wind, most difficult after an emotional training game last week.",
+   "asr_by": "local",
+   "stages": {
+    "heard_after": 0.87,
+    "text": 2.39,
+    "speaker": 1.04,
+    "emotion": 2.39,
+    "voice": 3.12
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000008_am_adam.mp3",
+     "dur": 4.29,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000008_bm_george.mp3",
+     "dur": 4.71,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000008_am_michael.mp3",
+     "dur": 4.74,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000008_af_bella.mp3",
+     "dur": 4.17,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000009",
+   "start": 41.63,
+   "end": 46.78,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "excited",
+   "arousal": 1.02,
+   "text": "I just want you to get over to him. There it is. It's gone.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.47,
+    "text": 0.42,
+    "speaker": 0.76,
+    "emotion": 0.76,
+    "voice": 1.45
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000009_am_adam.mp3",
+     "dur": 3.21,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000009_bm_george.mp3",
+     "dur": 3.65,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000009_am_michael.mp3",
+     "dur": 3.61,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000009_af_bella.mp3",
+     "dur": 3.31,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000010",
+   "start": 51.07,
+   "end": 56.51,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.18,
+   "text": "Just shy of the pylon. They'll mark it inside the one. Look to",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.75,
+    "text": 0.53,
+    "speaker": 0.78,
+    "emotion": 0.78,
+    "voice": 1.54
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000010_am_adam.mp3",
+     "dur": 3.95,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000010_bm_george.mp3",
+     "dur": 4.33,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000010_am_michael.mp3",
+     "dur": 4.03,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000010_af_bella.mp3",
+     "dur": 3.74,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000011",
+   "start": 56.51,
+   "end": 58.62,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.0,
+   "text": "Look to me as though Renard Bell.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.38,
+    "text": 0.11,
+    "speaker": 0.29,
+    "emotion": 0.3,
+    "voice": 1.14
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000011_am_adam.mp3",
+     "dur": 1.71,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000011_bm_george.mp3",
+     "dur": 2.07,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000011_am_michael.mp3",
+     "dur": 1.86,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000011_af_bella.mp3",
+     "dur": 1.77,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000012",
+   "start": 58.85,
+   "end": 64.74,
+   "speaker": 3,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.15,
+   "text": "Could have gotten in had he just decided to go at the pylon with the outstretched arm. That's what I wanna see. Borghi did a nice",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.27,
+    "text": 0.51,
+    "speaker": 0.87,
+    "emotion": 0.87,
+    "voice": 1.6
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000012_am_adam.mp3",
+     "dur": 5.89,
+     "tempo": 1.15
+    },
+    "bm_george": {
+     "file": "lines/L000012_bm_george.mp3",
+     "dur": 5.9,
+     "tempo": 1.35
+    },
+    "am_michael": {
+     "file": "lines/L000012_am_michael.mp3",
+     "dur": 5.9,
+     "tempo": 1.31
+    },
+    "af_bella": {
+     "file": "lines/L000012_af_bella.mp3",
+     "dur": 5.9,
+     "tempo": 1.13
+    }
+   }
+  },
+  {
+   "id": "L000013",
+   "start": 64.74,
+   "end": 70.02,
+   "speaker": 1,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.65,
+   "text": "Job of allowing his quarterback to throw it. I didn't think he got the ball over the top of that. He falls over. That's a",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.0,
+    "text": 0.13,
+    "speaker": 0.9,
+    "emotion": 0.9,
+    "voice": 1.67
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000013_am_adam.mp3",
+     "dur": 5.5,
+     "tempo": 1.35
+    },
+    "bm_george": {
+     "file": "lines/L000013_bm_george.mp3",
+     "dur": 5.28,
+     "tempo": 1.29
+    },
+    "am_michael": {
+     "file": "lines/L000013_am_michael.mp3",
+     "dur": 5.52,
+     "tempo": 1.35
+    },
+    "af_bella": {
+     "file": "lines/L000013_af_bella.mp3",
+     "dur": 5.28,
+     "tempo": 1.22
+    }
+   }
+  }
+ ],
+ "speaker_names": {
+  "1": "Analyst",
+  "2": "Referee",
+  "3": "Play-by-play"
+ },
+ "engine": {
+  "run": "20261122-120421_demo_fox-cfb_fox-cfb",
+  "asr": "deepgram:nova-3 (fallback groq/local)",
+  "felt_delay_p50": 7.872,
+  "felt_delay_p95": 8.876,
+  "view_delay_s": 0.0,
+  "stages_p50": {
+   "close_wait": 0.459,
+   "asr": 0.416,
+   "speaker": 0.729,
+   "emotion": 0.73,
+   "complete": 0.73,
+   "tts_queue": 0.0,
+   "tts_first_audio": 0.764,
+   "tts": 2.37,
+   "schedule_wait": -1.492
+  }
+ }
+}

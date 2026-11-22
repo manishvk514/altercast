@@ -1,0 +1,9 @@
+# Enrollment for demo/site/clips/fox-cfb (FOX Oregon vs Washington St, cut 0:33–1:43; times are
+# inside the cut): a few seconds of each voice, chosen once by the operator before the broadcast.
+speakers:
+- name: Play-by-play
+  spans: [[17.9, 21.0], [21.5, 28.0]]
+- name: Analyst
+  spans: [[0.3, 6.8], [28.9, 31.8]]
+- name: Referee
+  spans: [[8.4, 13.2]]

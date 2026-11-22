@@ -15,5 +15,5 @@ A real sports broadcast (CC BY), re-voiced by the Altercast engine: speech-to-te
 emotion, and a new character voice per commentator, timed to the picture with the crowd kept.
 Switch between the original commentary and the new voices, and pick a voice for each commentator.
 
-Clip credit: National Lacrosse League (CC BY 3.0, via Wikimedia Commons). The engine processed the clip once at
+Clip credits: FOX Sports and National Lacrosse League (CC BY 3.0, via Wikimedia Commons). The engine processed the clip once at
 live speed; this page replays that result.
