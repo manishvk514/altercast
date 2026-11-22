@@ -1,0 +1,831 @@
+{
+ "id": "nll-lacrosse",
+ "title": "Westervelt's hat-trick goal",
+ "sport": "Lacrosse \u00b7 NLL broadcast",
+ "credit": "National Lacrosse League (official channel), via Wikimedia Commons",
+ "license": "CC BY 3.0",
+ "source_url": "https://commons.wikimedia.org/wiki/File:National_Lacrosse_League-_Colorado_Mammoth%27s_Drew_Westervelt_Scores_Amazing_Dunk_Goal!.webm",
+ "note": "",
+ "duration": 76.0,
+ "speakers": 2,
+ "lines": [
+  {
+   "id": "L000001",
+   "start": 0.13,
+   "end": 4.06,
+   "speaker": 1,
+   "speaker_conf": "new",
+   "emotion": "neutral",
+   "arousal": 0,
+   "text": "Play to get it to Matt McLeod. Coach gave himself up to deliver that ball.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 1.06,
+    "text": 1.23,
+    "speaker": 1.2,
+    "emotion": 1.89,
+    "voice": 2.58
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000001_am_adam.mp3",
+     "dur": 3.93,
+     "tempo": 1.11
+    },
+    "bm_george": {
+     "file": "lines/L000001_bm_george.mp3",
+     "dur": 3.94,
+     "tempo": 1.22
+    },
+    "am_michael": {
+     "file": "lines/L000001_am_michael.mp3",
+     "dur": 3.94,
+     "tempo": 1.15
+    },
+    "af_bella": {
+     "file": "lines/L000001_af_bella.mp3",
+     "dur": 3.93,
+     "tempo": 1.01
+    }
+   }
+  },
+  {
+   "id": "L000002",
+   "start": 4.06,
+   "end": 5.41,
+   "speaker": 1,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0,
+   "text": "You're gonna take a pop.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.71,
+    "text": 0.39,
+    "speaker": 0.34,
+    "emotion": 0.91,
+    "voice": 1.95
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000002_am_adam.mp3",
+     "dur": 1.09,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000002_bm_george.mp3",
+     "dur": 1.22,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000002_am_michael.mp3",
+     "dur": 1.2,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000002_af_bella.mp3",
+     "dur": 1.04,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000003",
+   "start": 7.58,
+   "end": 9.38,
+   "speaker": 2,
+   "speaker_conf": "new",
+   "emotion": "neutral",
+   "arousal": 0,
+   "text": "McCloud around a pick from the ref.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.38,
+    "text": 0.2,
+    "speaker": 0.13,
+    "emotion": 0.2,
+    "voice": 0.97
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000003_am_adam.mp3",
+     "dur": 1.8,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000003_bm_george.mp3",
+     "dur": 2.12,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000003_am_michael.mp3",
+     "dur": 2.08,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000003_af_bella.mp3",
+     "dur": 1.63,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000004",
+   "start": 10.98,
+   "end": 14.05,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.04,
+   "text": "Skying is Jones with the catch. Seven to shoot for the.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.21,
+    "text": 0.16,
+    "speaker": 0.39,
+    "emotion": 0.39,
+    "voice": 1.21
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000004_am_adam.mp3",
+     "dur": 2.93,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000004_bm_george.mp3",
+     "dur": 3.14,
+     "tempo": 1.21
+    },
+    "am_michael": {
+     "file": "lines/L000004_am_michael.mp3",
+     "dur": 3.14,
+     "tempo": 1.2
+    },
+    "af_bella": {
+     "file": "lines/L000004_af_bella.mp3",
+     "dur": 3.01,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000005",
+   "start": 14.21,
+   "end": 18.5,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.27,
+   "text": "Westerbelle back to McBride behind the back. Westerbelle, tough shot goal.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.51,
+    "text": 0.17,
+    "speaker": 0.61,
+    "emotion": 0.61,
+    "voice": 1.37
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000005_am_adam.mp3",
+     "dur": 4.49,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000005_bm_george.mp3",
+     "dur": 4.58,
+     "tempo": 1.19
+    },
+    "am_michael": {
+     "file": "lines/L000005_am_michael.mp3",
+     "dur": 4.58,
+     "tempo": 1.11
+    },
+    "af_bella": {
+     "file": "lines/L000005_af_bella.mp3",
+     "dur": 4.35,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000006",
+   "start": 18.88,
+   "end": 23.9,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.48,
+   "text": "A hat trick for Drew Westerville. His first since the first quarter.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 1.1,
+    "text": 0.31,
+    "speaker": 0.79,
+    "emotion": 0.79,
+    "voice": 1.59
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000006_am_adam.mp3",
+     "dur": 3.45,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000006_bm_george.mp3",
+     "dur": 4.23,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000006_am_michael.mp3",
+     "dur": 4.29,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000006_af_bella.mp3",
+     "dur": 3.55,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000007",
+   "start": 23.9,
+   "end": 28.99,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.14,
+   "text": "Colorado eleven ten. He did it last week. It didn't count because he stepped on the crease, but this",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 1.01,
+    "text": 0.09,
+    "speaker": 0.61,
+    "emotion": 0.61,
+    "voice": 1.52
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000007_am_adam.mp3",
+     "dur": 5.09,
+     "tempo": 1.15
+    },
+    "bm_george": {
+     "file": "lines/L000007_bm_george.mp3",
+     "dur": 5.09,
+     "tempo": 1.25
+    },
+    "am_michael": {
+     "file": "lines/L000007_am_michael.mp3",
+     "dur": 5.23,
+     "tempo": 1.35
+    },
+    "af_bella": {
+     "file": "lines/L000007_af_bella.mp3",
+     "dur": 5.1,
+     "tempo": 1.08
+    }
+   }
+  },
+  {
+   "id": "L000008",
+   "start": 28.99,
+   "end": 31.26,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.26,
+   "text": "This time tonight, he was ready.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.49,
+    "text": 0.07,
+    "speaker": 0.17,
+    "emotion": 0.17,
+    "voice": 1.06
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000008_am_adam.mp3",
+     "dur": 1.82,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000008_bm_george.mp3",
+     "dur": 2.01,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000008_am_michael.mp3",
+     "dur": 1.91,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000008_af_bella.mp3",
+     "dur": 1.66,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000009",
+   "start": 31.52,
+   "end": 37.44,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.03,
+   "text": "And he just waited for the goalie. As soon as Richard slid, he knew where he was going with that and slammed it home. And",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.32,
+    "text": 0.37,
+    "speaker": 0.76,
+    "emotion": 0.76,
+    "voice": 1.53
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000009_am_adam.mp3",
+     "dur": 5.91,
+     "tempo": 1.13
+    },
+    "bm_george": {
+     "file": "lines/L000009_bm_george.mp3",
+     "dur": 5.92,
+     "tempo": 1.26
+    },
+    "am_michael": {
+     "file": "lines/L000009_am_michael.mp3",
+     "dur": 5.92,
+     "tempo": 1.3
+    },
+    "af_bella": {
+     "file": "lines/L000009_af_bella.mp3",
+     "dur": 5.92,
+     "tempo": 1.02
+    }
+   }
+  },
+  {
+   "id": "L000010",
+   "start": 37.44,
+   "end": 38.02,
+   "speaker": 2,
+   "speaker_conf": "low",
+   "emotion": "calm",
+   "arousal": -0.91,
+   "text": "With radically.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.49,
+    "text": 0.09,
+    "speaker": 0.08,
+    "emotion": 0.1,
+    "voice": 0.95
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000010_am_adam.mp3",
+     "dur": 0.83,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000010_bm_george.mp3",
+     "dur": 0.96,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000010_am_michael.mp3",
+     "dur": 1.03,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000010_af_bella.mp3",
+     "dur": 0.77,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000011",
+   "start": 38.98,
+   "end": 40.7,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "calm",
+   "arousal": -0.78,
+   "text": "Nice two man game.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.55,
+    "text": 0.07,
+    "speaker": 0.15,
+    "emotion": 0.15,
+    "voice": 1.27
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000011_am_adam.mp3",
+     "dur": 1.29,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000011_bm_george.mp3",
+     "dur": 1.55,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000011_am_michael.mp3",
+     "dur": 1.46,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000011_af_bella.mp3",
+     "dur": 1.24,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000012",
+   "start": 41.63,
+   "end": 44.42,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "calm",
+   "arousal": -0.55,
+   "text": "And Westerville finishes it off in style.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.59,
+    "text": 0.06,
+    "speaker": 0.25,
+    "emotion": 0.25,
+    "voice": 1.75
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000012_am_adam.mp3",
+     "dur": 2.22,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000012_bm_george.mp3",
+     "dur": 2.71,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000012_am_michael.mp3",
+     "dur": 2.36,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000012_af_bella.mp3",
+     "dur": 2.27,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000013",
+   "start": 46.37,
+   "end": 47.39,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.17,
+   "text": "Drew Westerbelle.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.36,
+    "text": 0.08,
+    "speaker": 0.11,
+    "emotion": 0.11,
+    "voice": 0.8
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000013_am_adam.mp3",
+     "dur": 1.13,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000013_bm_george.mp3",
+     "dur": 1.31,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000013_am_michael.mp3",
+     "dur": 1.18,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000013_af_bella.mp3",
+     "dur": 1.09,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000014",
+   "start": 48.19,
+   "end": 50.05,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.38,
+   "text": "Three goals, two assists.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.46,
+    "text": 0.06,
+    "speaker": 0.15,
+    "emotion": 0.15,
+    "voice": 0.91
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000014_am_adam.mp3",
+     "dur": 1.68,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000014_bm_george.mp3",
+     "dur": 2.01,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000014_am_michael.mp3",
+     "dur": 2.21,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000014_af_bella.mp3",
+     "dur": 1.86,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000015",
+   "start": 51.46,
+   "end": 54.11,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.06,
+   "text": "And anybody who questioned in any way.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.39,
+    "text": 0.07,
+    "speaker": 0.2,
+    "emotion": 0.2,
+    "voice": 1.02
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000015_am_adam.mp3",
+     "dur": 1.96,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000015_bm_george.mp3",
+     "dur": 2.28,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000015_am_michael.mp3",
+     "dur": 2.18,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000015_af_bella.mp3",
+     "dur": 1.97,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000016",
+   "start": 54.3,
+   "end": 55.87,
+   "speaker": 2,
+   "speaker_conf": "low",
+   "emotion": "neutral",
+   "arousal": -0.23,
+   "text": "Look at that. What a.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.38,
+    "text": 0.06,
+    "speaker": 0.16,
+    "emotion": 0.16,
+    "voice": 0.9
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000016_am_adam.mp3",
+     "dur": 1.25,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000016_bm_george.mp3",
+     "dur": 1.63,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000016_am_michael.mp3",
+     "dur": 1.65,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000016_af_bella.mp3",
+     "dur": 1.37,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000017",
+   "start": 56.77,
+   "end": 58.21,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": -0.36,
+   "text": "That's just ridiculous.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.55,
+    "text": 0.06,
+    "speaker": 0.14,
+    "emotion": 0.14,
+    "voice": 0.89
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000017_am_adam.mp3",
+     "dur": 1.24,
+     "tempo": 1.0
+    },
+    "bm_george": {
+     "file": "lines/L000017_bm_george.mp3",
+     "dur": 1.44,
+     "tempo": 1.0
+    },
+    "am_michael": {
+     "file": "lines/L000017_am_michael.mp3",
+     "dur": 1.39,
+     "tempo": 1.0
+    },
+    "af_bella": {
+     "file": "lines/L000017_af_bella.mp3",
+     "dur": 1.12,
+     "tempo": 1.0
+    }
+   }
+  },
+  {
+   "id": "L000018",
+   "start": 60.29,
+   "end": 65.41,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.35,
+   "text": "You could tell on his body language as he leaned back a little bit. He was just waiting for the shoulders to slide and open.",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 1.1,
+    "text": 0.48,
+    "speaker": 0.58,
+    "emotion": 0.58,
+    "voice": 1.49
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000018_am_adam.mp3",
+     "dur": 5.11,
+     "tempo": 1.22
+    },
+    "bm_george": {
+     "file": "lines/L000018_bm_george.mp3",
+     "dur": 5.36,
+     "tempo": 1.35
+    },
+    "am_michael": {
+     "file": "lines/L000018_am_michael.mp3",
+     "dur": 5.13,
+     "tempo": 1.27
+    },
+    "af_bella": {
+     "file": "lines/L000018_af_bella.mp3",
+     "dur": 5.13,
+     "tempo": 1.18
+    }
+   }
+  },
+  {
+   "id": "L000019",
+   "start": 65.41,
+   "end": 71.23,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.33,
+   "text": "Open up that back part of the goal, and he was sending it all. Andy, there were some people who question, why give up a first round pick?",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.27,
+    "text": 0.49,
+    "speaker": 0.76,
+    "emotion": 0.76,
+    "voice": 1.49
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000019_am_adam.mp3",
+     "dur": 5.83,
+     "tempo": 1.28
+    },
+    "bm_george": {
+     "file": "lines/L000019_bm_george.mp3",
+     "dur": 6.19,
+     "tempo": 1.35
+    },
+    "am_michael": {
+     "file": "lines/L000019_am_michael.mp3",
+     "dur": 6.33,
+     "tempo": 1.35
+    },
+    "af_bella": {
+     "file": "lines/L000019_af_bella.mp3",
+     "dur": 5.83,
+     "tempo": 1.34
+    }
+   }
+  },
+  {
+   "id": "L000020",
+   "start": 71.23,
+   "end": 75.97,
+   "speaker": 2,
+   "speaker_conf": "high",
+   "emotion": "neutral",
+   "arousal": 0.02,
+   "text": "Pick as procedure called against Colorado. Why give off a first round pick for Drew Westerdahl?",
+   "asr_by": "deepgram",
+   "stages": {
+    "heard_after": 0.03,
+    "text": 0.33,
+    "speaker": 0.61,
+    "emotion": 0.61,
+    "voice": 1.5
+   },
+   "voices": {
+    "am_adam": {
+     "file": "lines/L000020_am_adam.mp3",
+     "dur": 4.73,
+     "tempo": 1.23
+    },
+    "bm_george": {
+     "file": "lines/L000020_bm_george.mp3",
+     "dur": 4.74,
+     "tempo": 1.3
+    },
+    "am_michael": {
+     "file": "lines/L000020_am_michael.mp3",
+     "dur": 4.75,
+     "tempo": 1.3
+    },
+    "af_bella": {
+     "file": "lines/L000020_af_bella.mp3",
+     "dur": 4.75,
+     "tempo": 1.15
+    }
+   }
+  }
+ ],
+ "engine": {
+  "run": "20261122-110640_demo_nll-lacrosse_nll-lacrosse",
+  "asr": "deepgram:nova-3 (fallback groq/local)",
+  "felt_delay_p50": 6.314,
+  "felt_delay_p95": 8.267,
+  "view_delay_s": 0.0,
+  "stages_p50": {
+   "close_wait": 0.491,
+   "asr": 0.125,
+   "speaker": 0.297,
+   "emotion": 0.32,
+   "complete": 0.32,
+   "tts_queue": 0.0,
+   "tts_first_audio": 0.814,
+   "tts": 1.769,
+   "schedule_wait": -0.645
+  }
+ }
+}

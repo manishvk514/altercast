@@ -3,133 +3,163 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Altercast Demo</title>
-<meta name="description" content="Altercast re-voices sports commentary in character voices, in sync with the picture, with the crowd kept. Recorded demo.">
-<meta property="og:title" content="Altercast — Live Character Voice demo">
-<meta property="og:description" content="Same match, new voices: commentary re-voiced in character, in sync, crowd kept.">
+<title>Altercast Live Demo</title>
+<meta name="description" content="Real sports broadcasts re-voiced in character voices: each commentator gets their own voice, switchable live, in sync with the picture.">
+<meta property="og:title" content="Altercast — character voices on a real broadcast">
+<meta property="og:description" content="Pick a clip, pick a voice for each commentator, switch while it plays.">
 <meta property="og:image" content="og.png">
 <link rel="icon" href="mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#070910;--panel:#0F121B;--raised:#161A26;--ink:#F4F6FB;--muted:#8B93A7;--line:rgba(255,255,255,.08);
---violet:#7C5CFF;--aqua:#16C7D9;--ember:#FF6A3D;--mint:#34D399;--grad:linear-gradient(135deg,#8A6BFF 0%,#5B4BFF 55%,#16C7D9 100%)}
+--violet:#7C5CFF;--aqua:#16C7D9;--ember:#FF6A3D;--mint:#34D399;--s1:#A996FF;--s2:#5FE0EE;
+--grad:linear-gradient(135deg,#8A6BFF 0%,#5B4BFF 55%,#16C7D9 100%)}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
 a{color:var(--aqua)}
-.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 56px}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:1240px;margin:0 auto;padding:18px 16px 56px}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;font:700 22px Sora,sans-serif;letter-spacing:-.04em}
 .brand img{width:34px;height:34px}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px;font-size:12.5px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px;font-size:12.5px;color:var(--muted)}
 .pill b{color:var(--ink);font-weight:600}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ember)}
-h1{font:700 clamp(28px,4.4vw,46px)/1.08 Sora,sans-serif;letter-spacing:-.035em;margin:28px 0 8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 0 rgba(255,106,61,.6);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(255,106,61,0)}100%{box-shadow:0 0 0 0 rgba(255,106,61,0)}}
+h1{font:700 clamp(26px,4vw,42px)/1.1 Sora,sans-serif;letter-spacing:-.035em;margin:22px 0 6px}
 h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lede{color:var(--muted);max-width:720px;margin:0 0 22px;font-size:16px}
-.grid{display:grid;align-items:start;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:18px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px}
-.stage{position:relative;border-radius:20px 20px 0 0;overflow:hidden;background:#000;aspect-ratio:16/9}
-video{width:100%;height:100%;display:block;object-fit:cover}
-.cap{position:absolute;left:4%;right:4%;bottom:5%;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;transition:opacity .2s}
-.cap .who{display:flex;gap:6px;font-size:12px;font-weight:600}
-.chip{border-radius:999px;padding:3px 10px;background:rgba(7,9,16,.82);border:1px solid rgba(255,255,255,.14)}
-.chip.c1{color:#B9A8FF}.chip.c2{color:#7BE6F0}
-.chip.excited{color:#FFB199;border-color:rgba(255,106,61,.5)}
-.cap .txt{background:rgba(7,9,16,.82);border-radius:12px;padding:8px 14px;font-size:clamp(13px,1.8vw,18px);font-weight:500;text-align:center;max-width:900px}
-.big{position:absolute;inset:0;display:grid;place-items:center;background:rgba(7,9,16,.35);border:0;cursor:pointer;color:#fff}
-.big span{width:84px;height:84px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:0 10px 40px rgba(91,75,255,.5)}
+.lede{color:var(--muted);max-width:760px;margin:0 0 16px}
+h2{font:600 16px Sora,sans-serif;margin:0;letter-spacing:-.02em}
+.eyebrow{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px}
+/* clip picker */
+.clips{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;margin-bottom:14px}
+.clipcard{flex:0 0 250px;display:flex;gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:8px}
+.clipcard img{width:84px;height:48px;object-fit:cover;border-radius:8px;background:#000}
+.clipcard b{display:block;font-size:13.5px;line-height:1.25}
+.clipcard small{color:var(--muted);font-size:11.5px}
+.clipcard[aria-pressed=true]{border-color:var(--violet);background:rgba(124,92,255,.12)}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:940px){.grid{grid-template-columns:1fr}}
+.stage{position:relative;border-radius:18px 18px 0 0;overflow:hidden;background:#000;aspect-ratio:16/9}
+video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+.cap{position:absolute;left:3%;right:3%;bottom:4%;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;transition:opacity .2s}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.chip{border-radius:999px;padding:3px 10px;background:rgba(7,9,16,.85);border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:600}
+.k1{color:var(--s1);border-color:rgba(169,150,255,.55)}.k2{color:var(--s2);border-color:rgba(95,224,238,.55)}
+.excited,.peak{color:#FFB199;border-color:rgba(255,106,61,.55)}
+.cap .txt{background:rgba(7,9,16,.85);border-radius:12px;padding:7px 14px;font-size:clamp(13px,1.7vw,17px);font-weight:500;text-align:center;max-width:900px}
+.live{position:absolute;top:10px;left:10px;display:flex;gap:6px}
+.big{position:absolute;inset:0;display:grid;place-items:center;background:rgba(7,9,16,.4);border:0}
+.big span{width:80px;height:80px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:0 10px 40px rgba(91,75,255,.5)}
 .big[hidden]{display:none}
-.controls{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.loading{position:absolute;inset:0;display:grid;place-items:center;background:rgba(7,9,16,.7);font-size:14px;color:var(--muted)}
+.loading[hidden]{display:none}
+.controls{padding:12px 14px 14px;display:flex;flex-direction:column;gap:12px}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .seek{flex:1;min-width:140px;accent-color:var(--violet)}
 .time{font:500 13px "JetBrains Mono",monospace;color:var(--muted);min-width:92px;text-align:right}
-button{font:inherit;color:inherit;cursor:pointer}
 .btn{border:1px solid var(--line);background:var(--raised);border-radius:12px;padding:8px 14px;font-weight:600}
-.btn:hover{border-color:rgba(124,92,255,.6)}
 .play{width:44px;height:40px;padding:0;display:grid;place-items:center}
-.seg{display:inline-flex;background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:3px}
-.seg button{border:0;background:transparent;border-radius:11px;padding:8px 14px;font-weight:600;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;border-radius:11px;padding:8px 12px;font-weight:600;font-size:13.5px;color:var(--muted)}
 .seg button[aria-pressed=true]{background:var(--grad);color:#fff}
 .voices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:520px){.voices{grid-template-columns:1fr}}
+@media(max-width:560px){.voices{grid-template-columns:1fr}}
 .vbox{background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
-.vbox .lab{font-size:12px;color:var(--muted);margin-bottom:6px}
-.vbox .opts{display:flex;gap:6px;flex-wrap:wrap}
-.vbox button{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:6px 10px;font-size:13px}
-.vbox button[aria-pressed=true]{border-color:var(--violet);background:rgba(124,92,255,.16)}
-.vbox small{display:block;color:var(--muted);font-size:11.5px}
-.hint{font-size:12.5px;color:var(--muted)}
-.feed{padding:16px;display:flex;flex-direction:column;gap:10px;max-height:640px}
-.list{position:relative}
-.feed h2,.sec h2{font:600 17px Sora,sans-serif;margin:0;letter-spacing:-.02em}
-.list{overflow:auto;display:flex;flex-direction:column;gap:8px;padding-right:2px;min-height:200px}
-.ln{border:1px solid var(--line);background:var(--raised);border-radius:14px;padding:10px 12px;opacity:.38;transition:opacity .25s,border-color .25s;cursor:pointer}
-.ln.done{opacity:.85}.ln.now{opacity:1;border-color:rgba(22,199,217,.6)}
-.ln .top{display:flex;justify-content:space-between;gap:8px;font:500 11.5px "JetBrains Mono",monospace;color:var(--muted)}
+.vbox .lab{font-size:12.5px;margin-bottom:7px;display:flex;justify-content:space-between;gap:6px}
+.vbox .opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.vbox button{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:6px 9px;font-size:13px;text-align:left}
+.vbox button small{display:block;color:var(--muted);font-size:11px}
+.vbox button[aria-pressed=true]{border-color:var(--violet);background:rgba(124,92,255,.18)}
+.vbox.speaking{border-color:rgba(22,199,217,.55)}
+.talk{font:500 11px "JetBrains Mono",monospace;color:var(--aqua);visibility:hidden}
+.vbox.speaking .talk{visibility:visible}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+@media(max-width:560px){.pipe{grid-template-columns:repeat(2,1fr)}}
+.st{background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-height:62px;transition:border-color .2s,background .2s}
+.st .eyebrow{font-size:10px}
+.st b{display:block;font-size:13.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st em{font:500 11px "JetBrains Mono",monospace;color:var(--aqua);font-style:normal}
+.st.on{border-color:rgba(124,92,255,.55);background:rgba(124,92,255,.10)}
+/* transcript */
+.side{padding:14px;display:flex;flex-direction:column;gap:10px}
+.list{overflow:auto;display:flex;flex-direction:column;gap:8px;max-height:620px;position:relative;padding-right:2px}
+.ln{border:1px solid var(--line);background:var(--raised);border-radius:14px;padding:9px 11px;cursor:pointer;opacity:.5;transition:opacity .2s,border-color .2s}
+.ln.done{opacity:.8}.ln.now{opacity:1;border-color:rgba(22,199,217,.6);box-shadow:0 0 0 1px rgba(22,199,217,.2)}
+.ln .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.who{font-weight:700;font-size:12.5px}
+.who.k1{color:var(--s1)}.who.k2{color:var(--s2)}
+.ln .tm{font:500 11px "JetBrains Mono",monospace;color:var(--muted)}
 .ln .t{margin:4px 0 6px;font-size:13.5px}
 .tags{display:flex;gap:5px;flex-wrap:wrap}
 .tag{font-size:11px;border-radius:999px;padding:2px 8px;background:var(--panel);border:1px solid var(--line);color:var(--muted)}
-.tag.s1{color:#B9A8FF}.tag.s2{color:#7BE6F0}.tag.excited{color:#FFB199}
-.steps{display:flex;gap:4px;margin-top:7px}
-.steps i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.08)}
-.ln.done .steps i,.ln.now .steps i{background:var(--grad)}
-.sec{margin-top:18px;padding:18px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.sec{margin-top:16px;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
 @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:12px}
-.stat b{display:block;font:700 26px Sora,sans-serif;letter-spacing:-.03em}
+.stat b{display:block;font:700 24px Sora,sans-serif;letter-spacing:-.03em}
 .stat span{font-size:12.5px;color:var(--muted)}
-.how{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
-@media(max-width:760px){.how{grid-template-columns:1fr 1fr}}
-.how div{background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:12px;font-size:13.5px}
-.how b{display:block;font:600 14px Sora,sans-serif;margin-bottom:2px}
-.how em{font-style:normal;font:500 11.5px "JetBrains Mono",monospace;color:var(--aqua)}
-.note{color:var(--muted);font-size:13px;margin-top:12px}
-footer{margin-top:22px;color:var(--muted);font-size:13px;display:flex;gap:14px;flex-wrap:wrap}
+.note{color:var(--muted);font-size:13px;margin:10px 0 0}
+.credit{font-size:12px;color:var(--muted);padding:0 14px 12px}
+footer{margin-top:20px;color:var(--muted);font-size:13px;display:flex;gap:14px;flex-wrap:wrap}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="brand"><img src="mark.svg" alt="">altercast</div>
-    <div class="pill"><span class="dot"></span><b>Recorded demo</b> · analysed by the real engine at live speed</div>
+    <div class="pill"><span class="dot"></span><b>Recorded demo</b> · real broadcast, processed by the engine at live speed</div>
   </header>
 
-  <h1>Same match. <span>New voices.</span></h1>
-  <p class="lede">Altercast listens to the commentary, works out who is speaking and how excited they are, then speaks each line again in the character voice you pick — on time with the picture, with the crowd kept.</p>
+  <h1>Real commentary. <span>Your characters.</span></h1>
+  <p class="lede">Pick a clip. Altercast hears each line, works out which commentator said it and how excited they are, and speaks it again in the character voice you choose for that commentator — in time with the picture. Change voices while it plays.</p>
+
+  <div class="eyebrow" style="margin-bottom:6px">1 · Choose a clip</div>
+  <div class="clips" id="clips"></div>
 
   <div class="grid">
     <div class="panel">
       <div class="stage">
-        <video id="v" src="match.mp4" playsinline preload="auto" poster=""></video>
+        <video id="v" playsinline muted preload="auto"></video>
+        <div class="live" id="live"></div>
         <div class="cap" id="cap" style="opacity:0">
-          <div class="who"><span class="chip" id="capWho"></span><span class="chip" id="capMood"></span></div>
+          <div class="chips"><span class="chip" id="capWho"></span><span class="chip" id="capMood"></span></div>
           <div class="txt" id="capTxt"></div>
         </div>
-        <button class="big" id="big" aria-label="Play demo"><span><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <button class="big" id="big" aria-label="Play"><span><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <div class="loading" id="loading" hidden>Loading voices…</div>
       </div>
       <div class="controls">
         <div class="row">
-          <button class="btn play" id="play" aria-label="Play"><svg id="pi" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          <input class="seek" id="seek" type="range" min="0" max="36.2" step="0.05" value="0" aria-label="Seek">
-          <span class="time" id="time">0:00 / 0:36</span>
+          <button class="btn play" id="play" aria-label="Play or pause"><svg id="pi" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+          <input class="seek" id="seek" type="range" min="0" max="60" step="0.05" value="0" aria-label="Seek">
+          <span class="time" id="time">0:00 / 0:00</span>
         </div>
-        <div class="row" style="justify-content:space-between">
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">2 · Sound</div>
           <div class="seg" role="group" aria-label="Sound">
-            <button id="mOrig" aria-pressed="false">Original commentary</button>
-            <button id="mAlt" aria-pressed="true">Altercast voices</button>
+            <button data-mode="orig" aria-pressed="false">Original commentary</button>
+            <button data-mode="over" aria-pressed="true">Character voices over original</button>
+            <button data-mode="crowd" aria-pressed="false">Character voices + crowd only</button>
           </div>
-          <span class="hint">Switch any time — the picture keeps playing.</span>
         </div>
-        <div class="voices" id="voices"></div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">3 · Voices — change any time, even mid-sentence</div>
+          <div class="voices" id="voices"></div>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">What the engine is doing on this line</div>
+          <div class="pipe" id="pipe"></div>
+        </div>
       </div>
+      <div class="credit" id="credit"></div>
     </div>
 
-    <aside class="panel feed">
-      <h2>What the engine did</h2>
-      <span class="hint">Each line as it was heard: words → who → mood → new voice. Click a line to jump to it.</span>
+    <aside class="panel side">
+      <div><h2>Who said what</h2><span class="note" style="margin:0">Every line the engine heard, with its speaker and mood. Click a line to jump to it.</span></div>
       <div class="list" id="list"></div>
     </aside>
   </div>
@@ -142,85 +172,133 @@ footer{margin-top:22px;color:var(--muted);font-size:13px;display:flex;gap:14px;f
 
   <section class="panel sec">
     <h2>How it works</h2>
-    <div class="how">
-      <div><em>01 · listen</em><b>Words</b>Speech-to-text turns each phrase into text as soon as the speaker pauses.</div>
-      <div><em>02 · who</em><b>Speaker</b>A voice fingerprint tells commentator 1 from commentator 2 — no setup needed.</div>
-      <div><em>03 · mood</em><b>Emotion</b>Loudness, pitch and pace give calm, neutral, excited or peak.</div>
-      <div><em>04 · speak</em><b>New voice</b>The line is spoken again in the chosen character, fitted to its moment, over the crowd.</div>
-    </div>
-    <p class="note">The match and its commentary in this demo are made by us (animated pitch, generated voices) — no broadcast footage. The engine processed the clip once, at live speed, exactly as it does a stream; this page replays that result so it never waits for a server. Viewers watch a few seconds behind live, so the new voice lands with the picture. The same engine runs live in the Altercast web app and Chrome extension.</p>
+    <p class="note">① Speech-to-text turns each phrase into words as soon as the commentator pauses. ② A voice fingerprint decides Speaker 1 or Speaker 2 — found automatically, no setup. ③ Loudness, pitch and pace give the mood: calm, neutral, excited or peak. ④ The line is spoken again in that commentator's character voice, fitted to its moment. The viewer watches a few seconds behind live so the new voice lands with the picture; the original can stay underneath, or be replaced by the crowd only.</p>
+    <p class="note">This page replays one real run of the engine on each clip, so it never waits for a server. The same engine runs live in the Altercast app and Chrome extension.</p>
   </section>
 
-  <footer>
-    <span>Altercast — Live Character Voice</span>
-    <a href="https://github.com/manishvk514/altercast" target="_blank" rel="noreferrer">GitHub</a>
-  </footer>
+  <footer><span>Altercast — Live Character Voice</span><a href="https://github.com/manishvk514/altercast" target="_blank" rel="noreferrer">GitHub</a></footer>
 </div>
 
 <script>
-const VOICES={S1:[["am_adam","Hype Host","Energetic host"],["bm_george","The Veteran","Warm, measured"]],
-              S2:[["am_michael","Coach","Steady analyst"],["af_bella","Spark","Bright, playful"]]};
-const sel={S1:"am_adam",S2:"am_michael"};
-const NAME=Object.fromEntries([...VOICES.S1,...VOICES.S2].map(v=>[v[0],v[1]]));
-let mode="alt",D=null;
+const VOICES=[["am_adam","Hype Host","energetic"],["bm_george","The Veteran","warm, measured"],["am_michael","Coach","steady analyst"],["af_bella","Spark","bright, playful"]];
+const NAME=Object.fromEntries(VOICES.map(v=>[v[0],v[1]]));
+const DEFAULT={1:"am_adam",2:"af_bella"};
 const $=id=>document.getElementById(id);
-const v=$("v"),a=new Audio();a.preload="auto";
+const v=$("v");
 const fmt=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,"0")}`;
-const mixName=()=>`${sel.S1}__${sel.S2}`;
-const mixLines=()=>D.mix.find(m=>m.mix===mixName()).lines;
+let ctx=null,C=null,mode="over",sel={...DEFAULT},bufs={},srcs=[],startAt=0,bgGain=null,clipBase="";
 
-function setMix(){const t=v.currentTime;a.src=`audio/${mixName()}.mp3`;a.currentTime=t;if(!v.paused&&mode==="alt")a.play().catch(()=>{});}
-function setMode(m){mode=m;$("mOrig").setAttribute("aria-pressed",m==="orig");$("mAlt").setAttribute("aria-pressed",m==="alt");
-  v.muted=m==="alt";if(m==="alt"){a.currentTime=v.currentTime;if(!v.paused)a.play().catch(()=>{});}else a.pause();tick();}
-function play(){v.play();if(mode==="alt"){a.currentTime=v.currentTime;a.play().catch(()=>{});}}
-function pause(){v.pause();a.pause();}
+function ac(){if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)();return ctx;}
+async function loadBuf(url){const r=await fetch(url);const ab=await r.arrayBuffer();return await ac().decodeAudioData(ab);}
+
+async function openClip(id){
+  stopAll();v.pause();$("big").hidden=false;$("loading").hidden=false;
+  document.querySelectorAll(".clipcard").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
+  clipBase=`clips/${id}/`;C=await (await fetch(clipBase+"clip.json")).json();
+  sel={...DEFAULT};v.src=clipBase+"video.mp4";$("seek").max=C.duration;
+  $("credit").innerHTML=`Clip: <b>${C.title}</b> — ${C.credit}. Licence: ${C.license}. <a href="${C.source_url}" target="_blank" rel="noreferrer">Source</a>. ${C.note||""} Voices replaced by Altercast.`;
+  buildVoices();buildList();stats();tick();
+  bufs={};const jobs=[loadBuf(clipBase+"original.mp3").then(b=>bufs.original=b),loadBuf(clipBase+"crowd.mp3").then(b=>bufs.crowd=b)];
+  for(const l of C.lines)for(const [vid,info] of Object.entries(l.voices))jobs.push(loadBuf(clipBase+info.file).then(b=>bufs[l.id+"|"+vid]=b));
+  await Promise.all(jobs);$("loading").hidden=true;
+}
+
+function stopAll(){srcs.forEach(s=>{try{s.node.stop()}catch(e){}});srcs=[];}
+function stopSpeaker(k){srcs=srcs.filter(s=>{if(s.spk===k){try{s.node.stop()}catch(e){}return false}return true});}
+function startNode(buf,when,offset,gainNode,meta){
+  const n=ac().createBufferSource();n.buffer=buf;n.connect(gainNode);
+  n.start(when,Math.max(0,offset));srcs.push({node:n,...meta});return n;
+}
+function scheduleVoices(only){
+  const t=v.currentTime,now=ac().currentTime;
+  if(mode==="orig")return;
+  for(const l of C.lines){
+    if(only&&l.speaker!==only)continue;
+    const vid=sel[l.speaker],buf=bufs[l.id+"|"+vid];if(!buf)continue;
+    if(l.start+buf.duration<=t)continue;
+    const when=startAt+l.start;
+    const g=ac().createGain();g.gain.value=1;g.connect(ac().destination);
+    if(when<now)startNode(buf,now,now-when,g,{spk:l.speaker});else startNode(buf,when,0,g,{spk:l.speaker});
+  }
+}
+function scheduleAll(){
+  stopAll();const a=ac();const t=v.currentTime;startAt=a.currentTime-t;
+  bgGain=a.createGain();bgGain.connect(a.destination);
+  const bg=mode==="crowd"?bufs.crowd:bufs.original;
+  const base=mode==="orig"?1:mode==="over"?0.32:1;
+  bgGain.gain.setValueAtTime(base,a.currentTime);
+  if(mode==="over"){ // duck the original further while a character voice speaks
+    for(const l of C.lines){const d=bufs[l.id+"|"+sel[l.speaker]]?.duration||0;const s=startAt+l.start,e=s+d;
+      if(e<a.currentTime)continue;bgGain.gain.setTargetAtTime(0.16,Math.max(a.currentTime,s-0.05),0.06);bgGain.gain.setTargetAtTime(base,Math.max(a.currentTime,e),0.15);}
+  }
+  if(bg)startNode(bg,a.currentTime,t,bgGain,{spk:0});
+  scheduleVoices();
+}
+async function play(){if(!$("loading").hidden)return;await ac().resume();await v.play();scheduleAll();}
+function pause(){v.pause();stopAll();}
 function toggle(){v.paused?play():pause();}
+function setMode(m){mode=m;document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));if(!v.paused)scheduleAll();tick();}
+function setVoice(k,vid){sel[k]=vid;buildVoices();if(!v.paused){if(mode==="over")scheduleAll();else{stopSpeaker(k);scheduleVoices(k);}}tick();}
 
 function buildVoices(){
-  $("voices").innerHTML=["S1","S2"].map((s,i)=>`<div class="vbox"><div class="lab">Commentator ${i+1} speaks as</div><div class="opts">${
-    VOICES[s].map(([id,n,d])=>`<button data-s="${s}" data-v="${id}" aria-pressed="${sel[s]===id}">${n}<small>${d}</small></button>`).join("")}</div></div>`).join("");
-  $("voices").querySelectorAll("button").forEach(b=>b.onclick=()=>{sel[b.dataset.s]=b.dataset.v;buildVoices();setMix();if(mode!=="alt")setMode("alt");tick();});
+  $("voices").innerHTML=[1,2].map(k=>`<div class="vbox" id="vb${k}"><div class="lab"><b class="who k${k}">Speaker ${k} speaks as</b><span class="talk">● speaking</span></div><div class="opts">${
+    VOICES.map(([id,n,d])=>`<button data-k="${k}" data-v="${id}" aria-pressed="${sel[k]===id}">${n}<small>${d}</small></button>`).join("")}</div></div>`).join("");
+  $("voices").querySelectorAll("button").forEach(b=>b.onclick=()=>setVoice(+b.dataset.k,b.dataset.v));
 }
 function buildList(){
-  $("list").innerHTML=D.lines.map((l,i)=>`<div class="ln" id="ln${i}" data-t="${l.start}">
-    <div class="top"><span>${fmt(l.start)} – ${fmt(l.end)}</span><span>text ${l.stages.text.toFixed(2)} s · voice ${l.stages.voice_first.toFixed(2)} s</span></div>
-    <div class="t">“${l.text}”</div>
-    <div class="tags"><span class="tag ${l.spk.toLowerCase()}">Commentator ${l.spk.slice(1)}</span>
-      <span class="tag ${l.emotion}">${l.emotion}${l.arousal>0.5?" · energy "+l.arousal.toFixed(1):""}</span>
-      <span class="tag" data-voice="${l.spk}">→ ${NAME[sel[l.spk]]}</span></div>
-    <div class="steps"><i></i><i></i><i></i><i></i></div></div>`).join("");
-  $("list").querySelectorAll(".ln").forEach(el=>el.onclick=()=>{v.currentTime=+el.dataset.t;a.currentTime=v.currentTime;if(v.paused)play();});
+  $("list").innerHTML=C.lines.map((l,i)=>`<div class="ln" id="ln${i}" data-t="${l.start}">
+    <div class="top"><span class="who k${l.speaker}">Speaker ${l.speaker}</span><span class="tm">${fmt(l.start)}–${fmt(l.end)}</span></div>
+    <div class="t">${l.text}</div>
+    <div class="tags"><span class="tag ${l.emotion}">${l.emotion}</span><span class="tag" data-voice="${l.speaker}">voiced as ${NAME[sel[l.speaker]]}</span>${l.stages.text!=null?`<span class="tag">words in ${l.stages.text.toFixed(1)} s</span>`:""}</div></div>`).join("");
+  $("list").querySelectorAll(".ln").forEach(el=>el.onclick=()=>{v.currentTime=+el.dataset.t;if(!v.paused)scheduleAll();else play();});
 }
+function pipe(l){
+  const s=l?l.stages:{};const x=(k)=>s[k]!=null?`+${s[k].toFixed(2)} s`:"";
+  const cells=l?[["Heard","line ends "+fmt(l.end),"segmented"],["Words",`“${l.text.split(" ").slice(0,4).join(" ")}…”`,x("text")],
+    ["Who",`Speaker ${l.speaker}`,x("speaker")],["Mood",l.emotion+(l.arousal>0.6?" ↑":""),x("emotion")],
+    ["New voice",mode==="orig"?"(original playing)":NAME[sel[l.speaker]],x("voice")]]
+    :[["Heard","—",""],["Words","—",""],["Who","—",""],["Mood","—",""],["New voice","—",""]];
+  $("pipe").innerHTML=cells.map(([h,b,e])=>`<div class="st ${l?"on":""}"><div class="eyebrow">${h}</div><b>${b}</b><em>${e}</em></div>`).join("");
+}
+let lastCur=-2;
 function tick(){
-  const t=v.currentTime;$("seek").value=t;$("time").textContent=`${fmt(t)} / ${fmt(v.duration||36.2)}`;
-  const ml=mode==="alt"?mixLines():null;let cur=-1;
-  D.lines.forEach((l,i)=>{const end=ml?Math.max(l.end,ml[i].end):l.end;if(t>=l.start&&t<end)cur=i;
-    const el=$("ln"+i);el.classList.toggle("now",i===cur);el.classList.toggle("done",t>=end);
-    el.querySelector("[data-voice]").textContent="→ "+NAME[sel[l.spk]];});
-  if(cur>=0){const l=D.lines[cur];$("cap").style.opacity=1;
-    $("capWho").className="chip "+l.spk.toLowerCase().replace("s","c");
-    $("capWho").textContent=mode==="alt"?`${NAME[sel[l.spk]]} · Commentator ${l.spk.slice(1)}`:`Commentator ${l.spk.slice(1)} · original`;
-    $("capMood").className="chip "+l.emotion;$("capMood").textContent=l.emotion;$("capTxt").textContent=l.text;
-    const el=$("ln"+cur),L=$("list");if(el.offsetTop<L.scrollTop||el.offsetTop+el.offsetHeight>L.scrollTop+L.clientHeight)L.scrollTo({top:el.offsetTop-8,behavior:"smooth"});
-  }else $("cap").style.opacity=0;
-  if(mode==="alt"&&!v.paused&&Math.abs(a.currentTime-t)>0.15)a.currentTime=t;
+  if(!C)return;const t=v.currentTime;$("seek").value=t;$("time").textContent=`${fmt(t)} / ${fmt(C.duration)}`;
+  let cur=-1;
+  C.lines.forEach((l,i)=>{const d=mode==="orig"?l.end-l.start:(bufs[l.id+"|"+sel[l.speaker]]?.duration||l.end-l.start);
+    const end=l.start+Math.max(d,0.6);if(t>=l.start&&t<end)cur=i;
+    const el=$("ln"+i);el.classList.toggle("now",i===cur);el.classList.toggle("done",t>=end&&i!==cur);
+    el.querySelector("[data-voice]").textContent=mode==="orig"?"original voice":"voiced as "+NAME[sel[l.speaker]];});
+  [1,2].forEach(k=>$("vb"+k)?.classList.toggle("speaking",cur>=0&&C.lines[cur].speaker===k&&mode!=="orig"));
+  if(cur!==lastCur){lastCur=cur;pipe(cur>=0?C.lines[cur]:null);
+    if(cur>=0){const el=$("ln"+cur),L=$("list");if(el.offsetTop<L.scrollTop||el.offsetTop+el.offsetHeight>L.scrollTop+L.clientHeight)L.scrollTo({top:el.offsetTop-8,behavior:"smooth"});}}
+  if(cur>=0){const l=C.lines[cur];$("cap").style.opacity=1;
+    $("capWho").className="chip k"+l.speaker;$("capWho").textContent=mode==="orig"?`Speaker ${l.speaker} · original`:`Speaker ${l.speaker} → ${NAME[sel[l.speaker]]}`;
+    $("capMood").className="chip "+l.emotion;$("capMood").textContent=l.emotion;$("capTxt").textContent=l.text;}
+  else $("cap").style.opacity=0;
+  $("live").innerHTML=`<span class="chip">${mode==="orig"?"ORIGINAL":"ALTERCAST"}</span>`;
 }
 function stats(){
-  const s=[["96%","words right","word error 3.9%"],["94%","speech given to the right commentator","2 speakers, found automatically"],
-    ["100%","moods within one level","calm · neutral · excited · peak"],[`${D.delay.p50.toFixed(2)} s`,"typical felt delay","95% of lines within "+D.delay.p95.toFixed(1)+" s"]];
-  $("stats").innerHTML=s.map(([b,l,n])=>`<div class="stat"><b>${b}</b><span>${l}<br><small>${n}</small></span></div>`).join("");
-  $("statnote").textContent=`From one run of the engine on this clip at live speed (run 20261122-055222_989c2a), scored against the script. Viewing buffer ${D.view_delay} s; typical stage times: text ${D.stages.asr.toFixed(2)} s, speaker ${D.stages.speaker.toFixed(2)} s, first new-voice audio ${D.stages.tts_first_audio.toFixed(2)} s.`;
+  const n1=C.lines.filter(l=>l.speaker===1).length,n2=C.lines.filter(l=>l.speaker===2).length,E=C.engine||{};
+  const s=[[C.lines.length,"lines heard & re-voiced"],[C.speakers,`commentators found (${n1} + ${n2} lines)`],
+    [E.felt_delay_p50!=null?E.felt_delay_p50.toFixed(2)+" s":"—","behind live (typical) — so viewers watch a few seconds delayed"],[E.stages_p50&&E.stages_p50.asr!=null?E.stages_p50.asr.toFixed(2)+" s":"—","to turn speech into words"]];
+  $("stats").innerHTML=s.map(([b,l])=>`<div class="stat"><b>${b}</b><span>${l}</span></div>`).join("");
+  $("statnote").textContent=`One run of the engine on this clip at live speed (run ${E.run||"?"}; speech-to-text: ${E.asr||"?"}). Real broadcast audio has no script to score against, so word and speaker accuracy are shown line by line instead.`;
 }
-fetch("demo.json").then(r=>r.json()).then(d=>{D=d;buildVoices();buildList();stats();setMix();setMode("alt");tick();});
-$("big").onclick=()=>{play();};$("play").onclick=toggle;
 v.addEventListener("play",()=>{$("big").hidden=true;$("pi").innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';});
-v.addEventListener("pause",()=>{$("pi").innerHTML='<path d="M8 5v14l11-7z"/>';});
-v.addEventListener("ended",()=>{a.pause();$("big").hidden=false;});
-v.addEventListener("timeupdate",tick);v.addEventListener("seeked",()=>{a.currentTime=v.currentTime;tick();});
-$("seek").oninput=e=>{v.currentTime=+e.target.value;a.currentTime=v.currentTime;tick();};
-$("mOrig").onclick=()=>setMode("orig");$("mAlt").onclick=()=>setMode("alt");
-document.addEventListener("keydown",e=>{if(e.code==="Space"&&e.target.tagName!=="BUTTON"&&e.target.tagName!=="INPUT"){e.preventDefault();toggle();}});
-setInterval(()=>{if(!v.paused&&D)tick();},120);
+v.addEventListener("pause",()=>{$("pi").innerHTML='<path d="M8 5v14l11-7z"/>';stopAll();});
+v.addEventListener("ended",()=>{stopAll();$("big").hidden=false;});
+v.addEventListener("timeupdate",tick);
+$("seek").oninput=e=>{v.currentTime=+e.target.value;tick();};
+v.addEventListener("seeked",()=>{if(!v.paused)scheduleAll();tick();});
+$("big").onclick=play;$("play").onclick=toggle;
+document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+document.addEventListener("keydown",e=>{if(e.code==="Space"&&!["BUTTON","INPUT"].includes(e.target.tagName)){e.preventDefault();toggle();}});
+setInterval(()=>{if(!C||v.paused)return;tick();if(ctx&&Math.abs((ctx.currentTime-startAt)-v.currentTime)>0.15)scheduleAll();},150);
+fetch("clips.json").then(r=>r.json()).then(list=>{
+  $("clips").innerHTML=list.map(c=>`<button class="clipcard" data-id="${c.id}" aria-pressed="false"><img src="clips/${c.id}/poster.jpg" alt=""><span><b>${c.title}</b><small>${c.sport} · ${Math.round(c.duration)} s</small></span></button>`).join("");
+  $("clips").querySelectorAll(".clipcard").forEach(b=>b.onclick=()=>openClip(b.dataset.id));
+  const want=new URLSearchParams(location.search).get("clip");openClip(list.find(c=>c.id===want)?.id||list[0].id);
+});
 </script>
 </body>
 </html>
