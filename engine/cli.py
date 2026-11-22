@@ -402,6 +402,9 @@ def build_parser() -> argparse.ArgumentParser:
     rp.add_argument("--run", required=True)
     rp.add_argument("--truth", default=None)
     rp.set_defaults(func=cmd_report)
+    from engine.voices_cli import add_parser as add_voices_parser
+
+    add_voices_parser(sub)  # voices list / add / add-pro / say / show / hide / delete / sync
     return p
 
 

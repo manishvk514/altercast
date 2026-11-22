@@ -30,6 +30,7 @@ SITE = ROOT / "demo" / "site"
 VOICES = ["am_adam", "bm_george", "am_michael", "af_bella"]
 MAX_TEMPO = 1.35
 SR = 44100
+SERVER = "http://localhost:8000"
 
 
 def run(cmd: list[str]) -> None:
@@ -53,7 +54,7 @@ def to_mp3(x: np.ndarray, path: Path, sr: int = SR, kbps: int = 96) -> None:
 
 def say(voice: str, text: str, emotion: str) -> bytes:
     req = urllib.request.Request(
-        f"http://localhost:8000/api/voices/{voice}/say",
+        f"{SERVER}/api/voices/{voice}/say",
         data=json.dumps({"text": text[:300], "emotion": emotion}).encode(),
         headers={"Content-Type": "application/json"},
     )
@@ -70,6 +71,17 @@ def fit(wav: bytes, window: float, tmp: Path) -> tuple[np.ndarray, float]:
         capture_output=True, check=True,
     ).stdout  # fmt: skip
     return np.frombuffer(out, dtype=np.float32).copy(), tempo
+
+
+def voice_list(ids: list[str], offered: dict[str, dict[str, str]]) -> list[list[str]]:
+    """[[voice_id, name, short description], …] for the demo's voice pickers."""
+    out = []
+    for v in ids:
+        info = offered.get(v) or {}
+        desc = (info.get("description") or "").split("·")[0].strip().rstrip(".")
+        short = desc if len(desc) <= 26 else desc[:27].rsplit(" ", 1)[0].rstrip(",")
+        out.append([v, info.get("name") or v, (short.lower() or "cloned voice")])
+    return out
 
 
 def crowd_bed(audio: np.ndarray) -> np.ndarray:
@@ -89,7 +101,13 @@ def crowd_bed(audio: np.ndarray) -> np.ndarray:
     return librosa.resample(rest.astype(np.float32), orig_sr=model.samplerate, target_sr=SR)
 
 
+def offered_voices() -> dict[str, dict[str, str]]:
+    with urllib.request.urlopen(f"{SERVER}/api/voices", timeout=30) as r:
+        return {v["voice_id"]: v for v in json.loads(r.read())}
+
+
 def main() -> int:
+    global SERVER
     p = argparse.ArgumentParser()
     for a in ("--src", "--id", "--title", "--sport", "--credit", "--license", "--source-url"):
         p.add_argument(a, required=True)
@@ -100,7 +118,11 @@ def main() -> int:
     p.add_argument("--config", default="", help="engine config, e.g. config/engine.loud.yaml")
     p.add_argument("--enroll", default="", help="config/enroll.<id>.yaml: a few seconds of each voice")
     p.add_argument("--record", default="", help="reuse an engine run folder instead of running again")
+    p.add_argument("--voices", default=",".join(VOICES), help="voice ids, built-in or cloned (cu_…)")
+    p.add_argument("--server", default="http://localhost:8000", help="engine server that speaks the voices")
     a = p.parse_args()
+    SERVER = a.server.rstrip("/")
+    voices = [v for v in a.voices.split(",") if v]
 
     out = SITE / "clips" / a.id
     (out / "lines").mkdir(parents=True, exist_ok=True)
@@ -155,7 +177,7 @@ def main() -> int:
                        "emotion": stage("emotion_done"), "voice": stage("tts_first")},
             "voices": {},
         }  # fmt: skip
-        for v in VOICES:
+        for v in voices:
             audio, tempo = fit(say(v, ln["text"], item["emotion"]), window, tmp)
             name = f"{ln['line_id']}_{v}.mp3"
             to_mp3(audio, out / "lines" / name, kbps=96)
@@ -170,6 +192,7 @@ def main() -> int:
         "id": a.id, "title": a.title, "sport": a.sport, "credit": a.credit, "license": a.license,
         "source_url": a.source_url, "note": a.note, "duration": round(duration, 2),
         "speakers": len(spk_num), "lines": items,
+        "voice_list": voice_list(voices, offered_voices()),
         "speaker_names": {n: (rec.get("speakers", {}).get(s) or {}).get("display_name") or f"Speaker {n}"
                           for s, n in spk_num.items()},
         "engine": {"run": run_dir.name, "asr": (metrics.get("run") or {}).get("models", {}).get("asr"),

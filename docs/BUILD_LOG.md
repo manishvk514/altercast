@@ -728,3 +728,15 @@ hosted engine as default.
 - Popup: "No engine on this computer — use the hosted engine instead" + one-click "Use the hosted
   engine" when pointed at localhost; asks for / flags a wrong access code; re-reads voices after a
   fix. Checked in Chromium with the extension loaded.
+
+## 2026-11-22 — Voice cloning from the terminal + cloned voices in the demo
+- `python -m engine.cli voices list|add|add-pro|say|show|hide|delete|sync` (engine/voices_cli.py): a thin
+  client over the existing HTTP API, so it controls voices on any server (local, Voice Studio Space,
+  other hosts). Refuses to clone without `--i-have-permission`. Tests: tests/test_voices_cli.py.
+- Demo: `demo/add_voices.py` speaks every line of a built clip in new voices (built-in or cloned) and
+  adds them to the pickers; `build_clip.py --voices/--server`; clip.json gains `voice_list` and
+  `default_voices`, the player reads them.
+- Measured: adding one voice to the FOX clip (13 lines) took 48 s; browser test switching to the added
+  voice mid-play: no errors, audio clock in sync with video (43.90 s vs 43.91 s).
+- Why the built-in voices sound flat: Fish clones a Kokoro (synthetic) reference. Human recordings with
+  permission are the fix — see docs/VOICE_CLONING.md.

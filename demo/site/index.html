@@ -180,8 +180,8 @@ footer{margin-top:20px;color:var(--muted);font-size:13px;display:flex;gap:14px;f
 </div>
 
 <script>
-const VOICES=[["am_adam","Hype Host","energetic"],["bm_george","The Veteran","warm, measured"],["am_michael","Coach","steady analyst"],["af_bella","Spark","bright, playful"]];
-const NAME=Object.fromEntries(VOICES.map(v=>[v[0],v[1]]));
+const BUILTIN=[["am_adam","Hype Host","energetic"],["bm_george","The Veteran","warm, measured"],["am_michael","Coach","steady analyst"],["af_bella","Spark","bright, playful"]];
+let VOICES=BUILTIN,NAME={};
 const DEFAULT={1:"am_adam",2:"af_bella",3:"bm_george"};
 const SN=k=>(C.speaker_names&&C.speaker_names[k])||`Speaker ${k}`;
 const SPK=()=>Array.from({length:C.speakers},(_,i)=>i+1);
@@ -197,7 +197,8 @@ async function openClip(id){
   stopAll();v.pause();$("big").hidden=false;$("loading").hidden=false;
   document.querySelectorAll(".clipcard").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
   clipBase=`clips/${id}/`;C=await (await fetch(clipBase+"clip.json")).json();
-  const BY={"Play-by-play":"am_adam","Analyst":"am_michael","Referee":"bm_george"};sel={...DEFAULT};for(const [k,n] of Object.entries(C.speaker_names||{}))if(BY[n])sel[k]=BY[n];v.src=clipBase+"video.mp4";$("seek").max=C.duration;
+  const BY={"Play-by-play":"am_adam","Analyst":"am_michael","Referee":"bm_george"};VOICES=(C.voice_list&&C.voice_list.length?C.voice_list:BUILTIN).filter(x=>C.lines[0].voices[x[0]]);NAME=Object.fromEntries(VOICES.map(x=>[x[0],x[1]]));
+  sel={...DEFAULT};for(const [k,n] of Object.entries(C.speaker_names||{}))if(BY[n])sel[k]=BY[n];Object.assign(sel,C.default_voices||{});for(const k of SPK())if(!NAME[sel[k]])sel[k]=VOICES[(k-1)%VOICES.length][0];v.src=clipBase+"video.mp4";$("seek").max=C.duration;
   $("credit").innerHTML=`Clip: <b>${C.title}</b> — ${C.credit}. Licence: ${C.license}. <a href="${C.source_url}" target="_blank" rel="noreferrer">Source</a>. ${C.note||""} Voices replaced by Altercast.`;
   buildVoices();buildList();stats();tick();
   bufs={};const jobs=[loadBuf(clipBase+"original.mp3").then(b=>bufs.original=b),loadBuf(clipBase+"crowd.mp3").then(b=>bufs.crowd=b)];

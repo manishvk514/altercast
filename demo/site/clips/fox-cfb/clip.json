@@ -552,5 +552,27 @@
    "tts": 2.37,
    "schedule_wait": -1.492
   }
- }
+ },
+ "voice_list": [
+  [
+   "am_adam",
+   "Hype Host",
+   "energetic american host"
+  ],
+  [
+   "bm_george",
+   "The Veteran",
+   "warm, measured british"
+  ],
+  [
+   "am_michael",
+   "Coach",
+   "steady, confident analyst"
+  ],
+  [
+   "af_bella",
+   "Spark",
+   "bright, quick, playful"
+  ]
+ ]
 }
